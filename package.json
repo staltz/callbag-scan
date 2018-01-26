@@ -1,7 +1,12 @@
 {
   "name": "callbag-scan",
   "version": "1.0.0",
-  "description": "Callbag operator that combines consecutive values from the same source",
+  "description":
+    "Callbag operator that combines consecutive values from the same source",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/staltz/callbag-scan.git"
+  },
   "main": "index.js",
   "scripts": {
     "test": "tape test.js"
