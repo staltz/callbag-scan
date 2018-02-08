@@ -1,14 +1,16 @@
 function scan(reducer, seed) {
-  let hasAcc = arguments.length === 2;
-  return source => (start, sink) => {
-    if (start !== 0) return;
-    let acc = seed;
-    source(0, (t, d) => {
-      if (t === 1) {
-        acc = hasAcc ? reducer(acc, d) : ((hasAcc = true), d);
-        sink(1, acc);
-      } else sink(t, d);
-    });
+  var hasAcc = arguments.length === 2;
+  return function(source) {
+    return function(start, sink) {
+      if (start !== 0) return;
+      var acc = seed;
+      source(0, function(t, d) {
+        if (t === 1) {
+          acc = hasAcc ? reducer(acc, d) : ((hasAcc = true), d);
+          sink(1, acc);
+        } else sink(t, d);
+      });
+    };
   };
 }
 
