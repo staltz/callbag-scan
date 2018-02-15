@@ -1,19 +1,19 @@
 const test = require('tape');
-const scan = require('./index');
+const scan = require('./readme');
 
 test('it scans a pullable source', (t) => {
   t.plan(29);
   const upwardsExpected = [
-    [0, 'function'], 
-    [1, 'undefined'], 
-    [1, 'undefined'], 
+    [0, 'function'],
+    [1, 'undefined'],
+    [1, 'undefined'],
     [1, 'undefined'],
     [1, 'undefined']
   ];
   const downwardsExpectedType = [
     [0, 'function'],
-    [1, 'number'], 
-    [1, 'number'], 
+    [1, 'number'],
+    [1, 'number'],
     [1, 'number'],
     [2, 'undefined']
   ];
@@ -21,13 +21,13 @@ test('it scans a pullable source', (t) => {
 
   function makeSource() {
     let _sink;
-    let sent = 0; 
+    let sent = 0;
     const source = (type, data) => {
       t.true(upwardsExpected.length > 0, 'source can be pulled');
       const e = upwardsExpected.shift();
       t.equals(type, e[0], 'upwards type is expected: ' + e[0]);
       t.equals(typeof data, e[1], 'upwards data is expected: ' + e[1]);
-  
+
       if (type === 0) {
 	_sink = data;
         _sink(0, source);
@@ -88,16 +88,16 @@ test('it scans a pullable source', (t) => {
 test('it scans a pullable source without a seed', (t) => {
   t.plan(29);
   const upwardsExpected = [
-    [0, 'function'], 
-    [1, 'undefined'], 
-    [1, 'undefined'], 
+    [0, 'function'],
+    [1, 'undefined'],
+    [1, 'undefined'],
     [1, 'undefined'],
     [1, 'undefined']
   ];
   const downwardsExpectedType = [
     [0, 'function'],
-    [1, 'number'], 
-    [1, 'number'], 
+    [1, 'number'],
+    [1, 'number'],
     [1, 'number'],
     [2, 'undefined']
   ];
@@ -105,13 +105,13 @@ test('it scans a pullable source without a seed', (t) => {
 
   function makeSource() {
     let _sink;
-    let sent = 0; 
+    let sent = 0;
     const source = (type, data) => {
       t.true(upwardsExpected.length > 0, 'source can be pulled');
       const e = upwardsExpected.shift();
       t.equals(type, e[0], 'upwards type is expected: ' + e[0]);
       t.equals(typeof data, e[1], 'upwards data is expected: ' + e[1]);
-  
+
       if (type === 0) {
 	_sink = data;
         _sink(0, source);
@@ -176,16 +176,16 @@ test('it scans an async finite listenable source', (t) => {
     [0, 'function']
   ];
   const downwardsExpectedType = [
-    [0, 'function'], 
-    [1, 'number'], 
-    [1, 'number'], 
+    [0, 'function'],
+    [1, 'number'],
+    [1, 'number'],
     [1, 'number'],
     [2, 'undefined']
   ];
   const downwardsExpected = [1, 3, 6];
 
   function makeSource() {
-    let sent = 0; 
+    let sent = 0;
     const source = (type, data) => {
       const e = upwardsExpected.shift();
       t.equals(type, e[0], 'upwards type is expected: ' + e[0]);
@@ -246,16 +246,16 @@ test('it scans a listenable source without a seed', (t) => {
     [0, 'function']
   ];
   const downwardsExpectedType = [
-    [0, 'function'], 
-    [1, 'number'], 
-    [1, 'number'], 
+    [0, 'function'],
+    [1, 'number'],
+    [1, 'number'],
     [1, 'number'],
     [2, 'undefined']
   ];
   const downwardsExpected = [1, 3, 6];
 
   function makeSource() {
-    let sent = 0; 
+    let sent = 0;
     const source = (type, data) => {
       const e = upwardsExpected.shift();
       t.equals(type, e[0], 'upwards type is expected: ' + e[0]);
@@ -318,15 +318,15 @@ test('it returns a source that disposes upon upwards END', (t) => {
     [2, 'undefined']
   ];
   const downwardsExpectedType = [
-    [0, 'function'], 
-    [1, 'number'], 
-    [1, 'number'], 
+    [0, 'function'],
+    [1, 'number'],
+    [1, 'number'],
     [1, 'number'],
   ];
   const downwardsExpected = [1, 3, 6];
 
   function makeSource() {
-    let sent = 0; 
+    let sent = 0;
     let id;
     const source = (type, data) => {
       const e = upwardsExpected.shift();
@@ -359,7 +359,7 @@ test('it returns a source that disposes upon upwards END', (t) => {
         t.equals(data, e, 'downwards data is expected: ' + e);
       }
       if (downwardsExpected.length === 0) {
-        talkback(2);   
+        talkback(2);
       }
   };
   }
