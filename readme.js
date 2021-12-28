@@ -12,13 +12,13 @@
  * Example:
  *
  *     const fromIter = require('callbag-from-iter');
- *     const iterate = require('callbag-iterate');
+ *     const forEach = require('callbag-for-each');
  *     const scan = require('callbag-scan');
  *
  *     const iterSource = fromIter([1,2,3,4,5]);
  *     const scanned = scan((prev, x) => prev + x, 0)(iterSource);
  *
- *     scanned(0, iterate(x => console.log(x))); // 1
+ *     forEach(x => console.log(x))(scanned);    // 1
  *                                               // 3
  *                                               // 6
  *                                               // 10
